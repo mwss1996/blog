@@ -1,0 +1,6 @@
+# Blog
+
+/build/
+src/rebel.xml
+.classpath
+/WebContent/META-INF/
