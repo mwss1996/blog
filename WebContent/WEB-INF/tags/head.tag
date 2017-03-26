@@ -7,4 +7,13 @@
 	<title>mwss1996<c:if test="${not empty subtitle}"> - ${subtitle}</c:if>
 	</title>
 	<link rel="stylesheet" href="/resources/styles.css"/>
+	<script>
+		document.createElement('header');
+		document.createElement('main');
+		document.createElement('section');
+		document.createElement('article');
+		document.createElement('aside');
+		document.createElement('nav');
+		document.createElement('footer');
+	</script>
 </head>
