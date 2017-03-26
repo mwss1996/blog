@@ -1,6 +1,6 @@
 # Blog
 
 /build/
-src/rebel.xml
+rebel.xml
 /WebContent/META-INF/
 /bin/
