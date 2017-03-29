@@ -1,7 +1,6 @@
-package blogger;
+package blog;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,22 +14,24 @@ public class Articles extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Enumeration<String> names = request.getAttributeNames();
-		while(names.hasMoreElements()) {
-			String temp = names.nextElement();
-			int x = 1;
-			int y = 2;
-		}
-		int page = 0;
+		int requestedPage = 1;
+		String search = request.getParameter("search");
 		String uri = request.getRequestURI();
 		if (uri.startsWith("/page/")) {
-			page = Integer.parseInt(uri.replaceFirst("/page/", ""));
+			requestedPage = Integer.parseInt(uri.replaceFirst("/page/", ""));
 		}
-		int itemsPerPage = 2;
-		List<Article> list = ArticleDAO.listArticles(itemsPerPage, page);
-		request.setAttribute("currentPage", page);
+		int itensPorPagina = 5;//Itens por página
+		int numeroDePaginas = (int) Math.ceil((float) ArticleDAO.getRowCount() / itensPorPagina);//Número de páginas
+		if (requestedPage > numeroDePaginas) {
+			requestedPage = numeroDePaginas;
+		}
+		if (requestedPage < 1) {
+			requestedPage = 1;
+		}
+		request.setAttribute("currentPage", requestedPage);
+		List<Article> list = ArticleDAO.listArticles(itensPorPagina, requestedPage - 1, search);
 		request.setAttribute("articleList", list);
-		request.setAttribute("pageCount", Math.ceil(ArticleDAO.getRowCount() / itemsPerPage) - 1);
+		request.setAttribute("pageCount", numeroDePaginas);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/jsp/articles.jsp");
 		view.forward(request, response);
 	}

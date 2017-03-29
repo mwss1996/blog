@@ -1,4 +1,4 @@
-package blogger;
+package blog;
 
 import java.io.IOException;
 

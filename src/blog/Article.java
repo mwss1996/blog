@@ -1,4 +1,4 @@
-package blogger;
+package blog;
 
 public class Article {
 	

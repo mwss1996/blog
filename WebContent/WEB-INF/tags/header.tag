@@ -10,7 +10,7 @@
 		</nav>
 		<form id="search" action="">
 			<input type="text"/><%--
-		--%><button type="submit" value="/search/"><img id="magnifier" value="submit" src="/resources/search.svg"></button>
+		--%><button type="submit" value="/search/"><img id="magnifier" src="/resources/search.svg"></button>
 		</form>
 	</div>
 </header>

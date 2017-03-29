@@ -17,7 +17,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>articles</servlet-name>
-		<servlet-class>blogger.Articles</servlet-class>
+		<servlet-class>blog.Articles</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>articles</servlet-name>
