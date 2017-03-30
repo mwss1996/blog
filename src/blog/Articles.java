@@ -15,10 +15,9 @@ public class Articles extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int requestedPage = 1;
-		String search = request.getParameter("search");
 		String uri = request.getRequestURI();
-		if (uri.startsWith("/page/")) {
-			requestedPage = Integer.parseInt(uri.replaceFirst("/page/", ""));
+		if (uri.startsWith(request.getContextPath() + "/page/")) {
+			requestedPage = Integer.parseInt(uri.replaceFirst(request.getContextPath() + "/page/", ""));
 		}
 		int itensPorPagina = 5;//Itens por página
 		int numeroDePaginas = (int) Math.ceil((float) ArticleDAO.getRowCount() / itensPorPagina);//Número de páginas
@@ -29,7 +28,7 @@ public class Articles extends HttpServlet {
 			requestedPage = 1;
 		}
 		request.setAttribute("currentPage", requestedPage);
-		List<Article> list = ArticleDAO.listArticles(itensPorPagina, requestedPage - 1, search);
+		List<Article> list = ArticleDAO.listArticles(itensPorPagina, requestedPage - 1);
 		request.setAttribute("articleList", list);
 		request.setAttribute("pageCount", numeroDePaginas);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/jsp/articles.jsp");

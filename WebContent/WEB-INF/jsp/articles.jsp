@@ -17,7 +17,7 @@
 							${article.content}
 						</article>
 					</c:forEach>
-					<blog:pagination url="/page/" current="${currentPage}" count="${pageCount}"/>
+					<blog:pagination url="${pageContext.request.contextPath}/page/" current="${currentPage}" count="${pageCount}"/>
 				</section>
 			</div>
 		</main>

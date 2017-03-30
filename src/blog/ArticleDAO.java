@@ -5,11 +5,10 @@ import java.util.*;
 
 public class ArticleDAO {
 	
-	public static List<Article> listArticles(int rows, int page, String query) {
+	public static List<Article> listArticles(int rows, int page) {
 		try {
 			Connection connection = ConnectionFactory.getConnection();
-			PreparedStatement statment = connection.prepareStatement("SELECT * FROM ARTICLE WHERE CONTENT LIKE '%?%' LIMIT ? OFFSET ?");
-			statment.setString(1, query);
+			PreparedStatement statment = connection.prepareStatement("SELECT * FROM ARTICLE LIMIT ? OFFSET ?");
 			statment.setInt(1, rows);
 			statment.setInt(2, rows * page);
 			ResultSet result = statment.executeQuery();
